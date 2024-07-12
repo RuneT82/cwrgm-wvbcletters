@@ -39,11 +39,6 @@
         <script src="data/1870MissMap_1.js"></script>
         <script src="data/LetterLocations_2.js"></script>
         <script>
-        var highlightLayer;
-        function highlightFeature(e) {
-            highlightLayer = e.target;
-            highlightLayer.openPopup();
-        }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
         }).fitBounds([[30.26909531144451,-94.29503941793473],[35.40471135634937,-85.65533592725055]]);
@@ -121,18 +116,6 @@
         layer_CartoDark_0;
         map.addLayer(layer_CartoDark_0);
         function pop_1870MissMap_1(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <td class="visible-with-data" id="ICPSRCTY"colspan="2"><strong>ICPSRCTY</strong><br />' + (feature.properties['ICPSRCTY'] !== null ? autolinker.link(feature.properties['ICPSRCTY'].toLocaleString()) : '') + '</td>\
@@ -1111,18 +1094,6 @@
         bounds_group.addLayer(layer_1870MissMap_1);
         map.addLayer(layer_1870MissMap_1);
         function pop_LetterLocations_2(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Title'] !== null ? autolinker.link(feature.properties['Title'].toLocaleString()) : '') + '</td>\
